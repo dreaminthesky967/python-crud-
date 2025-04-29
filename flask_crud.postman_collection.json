@@ -1,0 +1,97 @@
+{
+    "info": {
+        "_postman_id": "12345-67890",
+        "name": "Flask CRUD API",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "GET Semua Data",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://127.0.0.1:5000/api/items",
+                    "protocol": "http",
+                    "host": ["127", "0", "0", "1"],
+                    "port": "5000",
+                    "path": ["api", "items"]
+                }
+            }
+        },
+        {
+            "name": "GET Satu Data",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://127.0.0.1:5000/api/items/1",
+                    "protocol": "http",
+                    "host": ["127", "0", "0", "1"],
+                    "port": "5000",
+                    "path": ["api", "items", "1"]
+                }
+            }
+        },
+        {
+            "name": "POST Tambah Data",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"name\": \"Laptop\",\n  \"description\": \"Laptop gaming high-end\",\n  \"price\": 15000000\n}"
+                },
+                "url": {
+                    "raw": "http://127.0.0.1:5000/api/items",
+                    "protocol": "http",
+                    "host": ["127", "0", "0", "1"],
+                    "port": "5000",
+                    "path": ["api", "items"]
+                }
+            }
+        },
+        {
+            "name": "PUT Update Data",
+            "request": {
+                "method": "PUT",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"name\": \"Laptop Pro\",\n  \"description\": \"Laptop gaming super high-end\",\n  \"price\": 20000000\n}"
+                },
+                "url": {
+                    "raw": "http://127.0.0.1:5000/api/items/1",
+                    "protocol": "http",
+                    "host": ["127", "0", "0", "1"],
+                    "port": "5000",
+                    "path": ["api", "items", "1"]
+                }
+            }
+        },
+        {
+            "name": "DELETE Hapus Data",
+            "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                    "raw": "http://127.0.0.1:5000/api/items/1",
+                    "protocol": "http",
+                    "host": ["127", "0", "0", "1"],
+                    "port": "5000",
+                    "path": ["api", "items", "1"]
+                }
+            }
+        }
+    ]
+}

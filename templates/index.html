@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Produk - Flask</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Daftar Produk</h1>
+
+        <!-- Pencarian -->
+        <input type="text" id="search" placeholder="Cari produk..." class="search-box">
+
+        <!-- Tombol Tambah -->
+        <button class="btn" id="openModal">Tambah Produk</button>
+
+        <!-- Modal Tambah Produk -->
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Tambah Produk</h2>
+                <form id="addForm" action="{{ url_for('add_item') }}" method="POST">
+                    <input type="text" name="name" placeholder="Nama produk..." required>
+                    <input type="text" name="description" placeholder="Deskripsi..." required>
+                    <input type="number" name="price" placeholder="Harga..." required>
+                    <button type="submit" class="btn">Simpan</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Modal Edit Produk -->
+        <div id="modalEdit" class="modal">
+            <div class="modal-content">
+                <span class="close" id="closeEdit">&times;</span>
+                <h2>Edit Produk</h2>
+                <form id="editForm" method="POST">
+                    <input type="hidden" name="id" id="editId">
+                    <input type="text" name="name" id="editNamaProduk" placeholder="Nama produk..." required>
+                    <input type="text" name="description" id="editDeskripsiProduk" placeholder="Deskripsi..." required>
+                    <input type="number" name="price" id="editHargaProduk" placeholder="Harga..." required>
+                    <button type="submit" class="btn">Simpan Perubahan</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Tabel Produk -->
+        <table class="styled-table" id="productTable">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Nama</th>
+                    <th>Deskripsi</th>
+                    <th>Harga</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                <tr data-id="{{ item.id }}">
+                    <td>{{ loop.index }}</td>
+                    <td class="nama-produk">{{ item.name }}</td>
+                    <td class="deskripsi-produk">{{ item.description }}</td>
+                    <td class="harga-produk">{{ item.price | rupiah }}</td>
+                    <td>
+                        <!-- Tombol Edit -->
+                        <button
+                            class="btn-edit"
+                            data-id="{{ item.id }}"
+                            data-name="{{ item.name }}"
+                            data-description="{{ item.description }}"
+                            data-price="{{ item.price }}">
+                            Edit
+                        </button>
+                        
+                        <!-- Tombol Hapus -->
+                        <button class="btn-delete" data-id="{{ item.id }}">Hapus</button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Notifikasi -->
+    <div id="notif" class="notif">Berhasil!</div>
+
+    <!-- Script -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

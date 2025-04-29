@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Tambah Tugas</title>
+</head>
+    <div id="modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Tambah Produk</h2>
+                <form id="addForm" action="{{ url_for('add_item') }}" method="POST">
+                    <input type="text" name="name" placeholder="Nama produk..." required>
+                    <input type="text" name="description" placeholder="Deskripsi..." required>
+                    <input type="number" name="price" placeholder="Harga..." required>
+                    <button type="submit" class="btn">Simpan</button>
+                </form>
+                <div class="loading" id="loading">Loading...</div>
+            </div>
+        </div>
